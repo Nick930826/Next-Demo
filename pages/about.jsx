@@ -4,14 +4,14 @@ import { connect } from 'react-redux'
 
 class About extends React.Component {
   static async getInitialProps({ req }) {
-    console.log('getInitialProps: about')
+    console.log('about: getInitialProps')
     const about = '我是about'
     return { about }
   }
 
   constructor (props) {
     super(props)
-    console.log('constructor: about')
+    console.log('about: constructor')
   }
 
   handleAddParams = () => {

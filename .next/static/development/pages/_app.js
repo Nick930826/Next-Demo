@@ -13374,7 +13374,7 @@ function (_App) {
             switch (_context.prev = _context.next) {
               case 0:
                 Component = ctx.Component;
-                console.log('getInitialProps: app');
+                console.log('_app: getInitialProps');
                 pageProps = {};
 
                 if (!Component.getInitialProps) {
@@ -13549,6 +13549,8 @@ var isServer = "object" === 'undefined';
 var __NEXT_REDUX_STORE__ = '__NEXT_REDUX_STORE__';
 
 var getOrCreateStore = function getOrCreateStore(initialState) {
+  /* 浏览器每次切换的时候都会执行, 所以在客户端通过 window[__NEXT_REDUX_STORE__] 变量保存住store，
+  执行的时候，若是没有，则进行初始化创建，若是有，则返回 window[__NEXT_REDUX_STORE__]。这样能保证数据都是通用的 */
   if (isServer) {
     return Object(_store__WEBPACK_IMPORTED_MODULE_11__["default"])(initialState);
   }
@@ -13577,7 +13579,10 @@ var getOrCreateStore = function getOrCreateStore(initialState) {
             while (1) {
               switch (_context.prev = _context.next) {
                 case 0:
-                  console.log('WithReduxApp getInitialProps::::');
+                  console.log('WithReduxApp: getInitialProps');
+                  /* 浏览器每次切换的时候，都会执行这个getInitialProps，也就是_app.js的getInitialProps；
+                  所以在这这边要保证的是，每次创建store的时候，是同一个store，否则每次创建store数据都变为初始化数据*/
+
                   reduxStore = getOrCreateStore();
                   ctx.reduxStore = reduxStore; // 这里把reduxStore传过去给Index的getInitialProps使用，上下文还在，这是同一个reduxStore
 
@@ -13593,7 +13598,8 @@ var getOrCreateStore = function getOrCreateStore(initialState) {
 
                 case 7:
                   appProps = _context.sent;
-                  console.log('appProps', appProps);
+                  // 执行的是_app.js的getInitialProps静态方法，返回的是组件的
+                  console.log('appProps:::', appProps);
 
                 case 9:
                   return _context.abrupt("return", Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_3__["default"])({}, appProps, {
@@ -13622,7 +13628,7 @@ var getOrCreateStore = function getOrCreateStore(initialState) {
 
       Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_5__["default"])(this, WithReduxApp);
 
-      console.log('WithReduxApp constructor::::initialReduxState', props.initialReduxState);
+      console.log('WithReduxApp: constructor: initialReduxState', props.initialReduxState);
       _this = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7__["default"])(WithReduxApp).call(this, props));
       _this.reduxStore = getOrCreateStore(props.initialReduxState);
       return _this;
@@ -13644,7 +13650,7 @@ var getOrCreateStore = function getOrCreateStore(initialState) {
           ,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 47
+            lineNumber: 51
           },
           __self: this
         }));

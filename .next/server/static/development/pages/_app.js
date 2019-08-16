@@ -1209,7 +1209,7 @@ class MyApp extends next_app__WEBPACK_IMPORTED_MODULE_2___default.a {
     const {
       Component
     } = ctx;
-    console.log('getInitialProps: app');
+    console.log('_app: getInitialProps');
     let pageProps = {};
 
     if (Component.getInitialProps) {
@@ -1395,6 +1395,8 @@ const isServer = "undefined" === 'undefined';
 const __NEXT_REDUX_STORE__ = '__NEXT_REDUX_STORE__';
 
 const getOrCreateStore = initialState => {
+  /* 浏览器每次切换的时候都会执行, 所以在客户端通过 window[__NEXT_REDUX_STORE__] 变量保存住store，
+  执行的时候，若是没有，则进行初始化创建，若是有，则返回 window[__NEXT_REDUX_STORE__]。这样能保证数据都是通用的 */
   if (isServer) {
     return Object(_store__WEBPACK_IMPORTED_MODULE_4__["default"])(initialState);
   }
@@ -1409,15 +1411,19 @@ const getOrCreateStore = initialState => {
 /* harmony default export */ __webpack_exports__["default"] = (MyApp => {
   class WithReduxApp extends react__WEBPACK_IMPORTED_MODULE_3___default.a.Component {
     static async getInitialProps(ctx) {
-      console.log('WithReduxApp getInitialProps::::');
+      console.log('WithReduxApp: getInitialProps');
+      /* 浏览器每次切换的时候，都会执行这个getInitialProps，也就是_app.js的getInitialProps；
+      所以在这这边要保证的是，每次创建store的时候，是同一个store，否则每次创建store数据都变为初始化数据*/
+
       const reduxStore = getOrCreateStore();
       ctx.reduxStore = reduxStore; // 这里把reduxStore传过去给Index的getInitialProps使用，上下文还在，这是同一个reduxStore
 
       let appProps = {};
 
       if (typeof MyApp.getInitialProps === 'function') {
-        appProps = await MyApp.getInitialProps(ctx);
-        console.log('appProps', appProps);
+        appProps = await MyApp.getInitialProps(ctx); // 执行的是_app.js的getInitialProps静态方法，返回的是组件的
+
+        console.log('appProps:::', appProps);
       }
 
       return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_2__["default"])({}, appProps, {
@@ -1427,7 +1433,7 @@ const getOrCreateStore = initialState => {
     }
 
     constructor(props) {
-      console.log('WithReduxApp constructor::::initialReduxState', props.initialReduxState);
+      console.log('WithReduxApp: constructor: initialReduxState', props.initialReduxState);
       super(props);
       this.reduxStore = getOrCreateStore(props.initialReduxState);
     }
@@ -1448,7 +1454,7 @@ const getOrCreateStore = initialState => {
         ,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 47
+          lineNumber: 51
         },
         __self: this
       }));

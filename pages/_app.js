@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 class MyApp extends App {
   static async getInitialProps (ctx) {
     const { Component } = ctx
-    console.log('getInitialProps: app')
+    console.log('_app: getInitialProps')
     let pageProps = {}
 
     if (Component.getInitialProps) {

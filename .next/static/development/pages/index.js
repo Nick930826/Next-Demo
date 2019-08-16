@@ -13145,7 +13145,7 @@ function initializeStore(state) {
 
 /***/ }),
 
-/***/ 1:
+/***/ 0:
 /*!**********************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fcxy%2Fcode%2Fnext-demo%2Fpages%2Findex.jsx ***!
   \**********************************************************************************************************************/
@@ -13168,5 +13168,5 @@ module.exports = dll_129a35c7ec57967eb265;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js"]]]);
+},[[0,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map

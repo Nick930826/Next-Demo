@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -160,7 +160,7 @@ class About extends react__WEBPACK_IMPORTED_MODULE_1___default.a.Component {
   static async getInitialProps({
     req
   }) {
-    console.log('getInitialProps: about');
+    console.log('about: getInitialProps');
     const about = '我是about';
     return {
       about
@@ -174,7 +174,7 @@ class About extends react__WEBPACK_IMPORTED_MODULE_1___default.a.Component {
       next_router__WEBPACK_IMPORTED_MODULE_2___default.a.push('/');
     });
 
-    console.log('constructor: about');
+    console.log('about: constructor');
   }
 
   render() {
@@ -205,7 +205,7 @@ const mapStateToProps = state => {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!*******************************!*\
   !*** multi ./pages/about.jsx ***!
   \*******************************/

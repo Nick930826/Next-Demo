@@ -11266,7 +11266,7 @@ function (_React$Component) {
             switch (_context.prev = _context.next) {
               case 0:
                 req = _ref.req;
-                console.log('getInitialProps: about');
+                console.log('about: getInitialProps');
                 about = '我是about';
                 return _context.abrupt("return", {
                   about: about
@@ -11299,7 +11299,7 @@ function (_React$Component) {
       next_router__WEBPACK_IMPORTED_MODULE_10___default.a.push('/');
     });
 
-    console.log('constructor: about');
+    console.log('about: constructor');
     return _this;
   }
 
@@ -11334,7 +11334,7 @@ var mapStateToProps = function mapStateToProps(state) {
 
 /***/ }),
 
-/***/ 0:
+/***/ 1:
 /*!***************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fabout&absolutePagePath=%2FUsers%2Fcxy%2Fcode%2Fnext-demo%2Fpages%2Fabout.jsx ***!
   \***************************************************************************************************************************/
@@ -11357,5 +11357,5 @@ module.exports = dll_129a35c7ec57967eb265;
 
 /***/ })
 
-},[[0,"static/runtime/webpack.js"]]]);
+},[[1,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=about.js.map
