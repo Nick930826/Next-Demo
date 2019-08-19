@@ -88,10 +88,31 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "./config.js":
+/*!*******************!*\
+  !*** ./config.js ***!
+  \*******************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = {
+  github: {
+    authorize: `https://github.com/login/oauth/authorize?client_id=Iv1.d3aa7cf2ceca7d24&scope=user`,
+    request_token_url: 'https://github.com/login/oauth/access_token',
+    client_id: 'Iv1.d3aa7cf2ceca7d24',
+    client_secret: '2079212bd55cf0b07dc3cfb218cd312cd97922de'
+  }
+};
+
+/***/ }),
 
 /***/ "./node_modules/@babel/runtime-corejs2/core-js/map.js":
 /*!************************************************************!*\
@@ -867,8 +888,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "react-redux");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store */ "./store.js");
-var _jsxFileName = "/Users/cxy/code/next-demo/pages/index.jsx";
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store */ "./store.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../config */ "./config.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_config__WEBPACK_IMPORTED_MODULE_5__);
+
+
 
 
 
@@ -879,11 +905,17 @@ class Index extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     reduxStore
   }) {
     console.log('getInitialProps:::index', reduxStore.getState());
-    reduxStore.dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_3__["add"])(4));
+    reduxStore.dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_4__["add"])(4));
     const index = '我是index';
     return {
       index
     };
+  }
+
+  componentDidMount() {
+    axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/user/info').then(resp => {
+      console.log(resp);
+    });
   }
 
   render() {
@@ -892,33 +924,13 @@ class Index extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       index,
       add
     } = this.props;
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 17
-      },
-      __self: this
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-      href: "/about",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 18
-      },
-      __self: this
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 19
-      },
-      __self: this
-    }, "Hello World ", test, " ", index, " ", this.props.count)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      onClick: () => add(1),
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 21
-      },
-      __self: this
-    }, "+1"));
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+      href: "/about"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Hello World ", test, " ", index, " ", this.props.count)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      onClick: () => add(1)
+    }, "+1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: _config__WEBPACK_IMPORTED_MODULE_5___default.a.github.authorize
+    }, "\u767B\u5F55"));
   }
 
 }
@@ -1036,7 +1048,7 @@ function initializeStore(state) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 5:
 /*!*******************************!*\
   !*** multi ./pages/index.jsx ***!
   \*******************************/
@@ -1045,6 +1057,17 @@ function initializeStore(state) {
 
 module.exports = __webpack_require__(/*! /Users/cxy/code/next-demo/pages/index.jsx */"./pages/index.jsx");
 
+
+/***/ }),
+
+/***/ "axios":
+/*!************************!*\
+  !*** external "axios" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("axios");
 
 /***/ }),
 

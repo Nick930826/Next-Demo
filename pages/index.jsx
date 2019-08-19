@@ -1,7 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 import { connect } from 'react-redux'
+import axios from 'axios'
 import { add } from '../store'
+import config from '../config'
 
 class Index extends React.Component {
   static async getInitialProps({ reduxStore }) {
@@ -9,6 +11,12 @@ class Index extends React.Component {
     reduxStore.dispatch(add(4))
     const index = '我是index'
     return { index }
+  }
+
+  componentDidMount () {
+    axios.get('/api/user/info').then(resp => {
+      console.log(resp)
+    })
   }
 
   render() {
@@ -19,6 +27,7 @@ class Index extends React.Component {
           <a>Hello World {test} {index} {this.props.count}</a>
         </Link>
         <button onClick={() => add(1)}>+1</button>
+        <a href={config.github.authorize}>登录</a>
       </div>
     )
   }

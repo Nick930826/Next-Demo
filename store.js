@@ -60,6 +60,10 @@ function asyncAdd (num) {
 }
 
 export default function initializeStore (state) {
-  const store = createStore(allReducer, Object.assign({}, { counter: initailState, user: userInitailState }, state), composeWithDevTools(applyMiddleware(thunk)))
+  const store = createStore(
+    allReducer,
+    Object.assign({}, { counter: initailState, user: userInitailState }, state),
+    composeWithDevTools(applyMiddleware(thunk))
+  )
   return store
 }

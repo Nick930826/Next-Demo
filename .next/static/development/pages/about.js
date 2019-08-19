@@ -11244,7 +11244,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "/Users/cxy/code/next-demo/pages/about.jsx";
 
 
 
@@ -11311,12 +11310,7 @@ function (_React$Component) {
           about = _this$props.about,
           count = _this$props.count;
       return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
-        onClick: this.handleAddParams,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 24
-        },
-        __self: this
+        onClick: this.handleAddParams
       }, "About", test, about, count);
     }
   }]);
@@ -11334,7 +11328,7 @@ var mapStateToProps = function mapStateToProps(state) {
 
 /***/ }),
 
-/***/ 1:
+/***/ 0:
 /*!***************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fabout&absolutePagePath=%2FUsers%2Fcxy%2Fcode%2Fnext-demo%2Fpages%2Fabout.jsx ***!
   \***************************************************************************************************************************/
@@ -11357,5 +11351,5 @@ module.exports = dll_129a35c7ec57967eb265;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js"]]]);
+},[[0,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=about.js.map

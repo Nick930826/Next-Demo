@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -151,7 +151,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "react-redux");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_3__);
 
-var _jsxFileName = "/Users/cxy/code/next-demo/pages/about.jsx";
 
 
 
@@ -184,12 +183,7 @@ class About extends react__WEBPACK_IMPORTED_MODULE_1___default.a.Component {
       count
     } = this.props;
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      onClick: this.handleAddParams,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 24
-      },
-      __self: this
+      onClick: this.handleAddParams
     }, "About", test, about, count);
   }
 
@@ -205,7 +199,7 @@ const mapStateToProps = state => {
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!*******************************!*\
   !*** multi ./pages/about.jsx ***!
   \*******************************/
