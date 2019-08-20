@@ -23,9 +23,23 @@ export default MyApp => {
   class WithReduxApp extends React.Component {
     static async getInitialProps (ctx) {
       console.log('WithReduxApp: getInitialProps')
+      
+      let reduxStore
       /* 浏览器每次切换的时候，都会执行这个getInitialProps，也就是_app.js的getInitialProps；
       所以在这这边要保证的是，每次创建store的时候，是同一个store，否则每次创建store数据都变为初始化数据*/
-      const reduxStore = getOrCreateStore()
+      if (isServer) {
+        const { req } = ctx.ctx // 这里的ctx才是服务端那边的ctx，只有服务端运行才能取到
+        const session = req.session
+        if (session && session.userInfo) {
+          reduxStore = getOrCreateStore({
+            user: session.userInfo
+          })
+        } else {
+          reduxStore = getOrCreateStore()
+        }
+      } else {
+        reduxStore = getOrCreateStore()
+      }
       ctx.reduxStore = reduxStore // 这里把reduxStore传过去给Index的getInitialProps使用，上下文还在，这是同一个reduxStore
       let appProps = {}
       if (typeof MyApp.getInitialProps === 'function') {

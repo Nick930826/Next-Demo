@@ -4,6 +4,9 @@ import Link from 'next/link'
 import WithRedux from '../with-redux'
 import { Provider } from 'react-redux'
 
+import { Layout } from 'components'
+import './global.less'
+
 class MyApp extends App {
   static async getInitialProps (ctx) {
     const { Component } = ctx
@@ -21,11 +24,11 @@ class MyApp extends App {
     render () {
       const { Component, pageProps, reduxStore } = this.props
       return <Provider store={reduxStore}>
-        <Container>
-          <Link href='/index'><a>index</a></Link>
-          <Link href='/about'><a>about</a></Link>
-          <Component {...pageProps} />
-        </Container>
+        <Layout>
+          <Container>
+            <Component {...pageProps} />
+          </Container>
+        </Layout>
       </Provider>
     }
 

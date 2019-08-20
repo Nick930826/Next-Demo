@@ -42,7 +42,9 @@ app.prepare().then(() => {
   server.use(router.routes())
 
   server.use(async (ctx, next) => {
+    ctx.req.session = ctx.session
     await handle(ctx.req, ctx.res)
+    // 设置“ctx.respond = false” 是因为handle内部已经对ctx.body做了处理，无需koa内部实现响应的内容
     ctx.respond = false
   })
   server.listen(3000, () => {

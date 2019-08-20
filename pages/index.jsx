@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { connect } from 'react-redux'
+import { Button } from 'antd'
 import axios from 'axios'
 import { add } from '../store'
 import config from '../config'
@@ -8,15 +9,14 @@ import config from '../config'
 class Index extends React.Component {
   static async getInitialProps({ reduxStore }) {
     console.log('getInitialProps:::index', reduxStore.getState())
-    reduxStore.dispatch(add(4))
     const index = '我是index'
     return { index }
   }
 
   componentDidMount () {
-    axios.get('/api/user/info').then(resp => {
-      console.log(resp)
-    })
+    // axios.get('/api/user/info').then(resp => {
+    //   console.log(resp)
+    // })
   }
 
   render() {
@@ -24,9 +24,9 @@ class Index extends React.Component {
     return (
       <div>
         <Link href='/about'>
-          <a>Hello World {test} {index} {this.props.count}</a>
+          <a>Hello World {test} {index} </a>
         </Link>
-        <button onClick={() => add(1)}>+1</button>
+        <Button type='primary'>+1</Button>
         <a href={config.github.authorize}>登录</a>
       </div>
     )
@@ -35,16 +35,12 @@ class Index extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    count: state.counter.count,
-    username: state.user.username
+    user: state.user
   }
 }
 
 const mapDispatchToProps = dispatch => {
-  return {
-    add: (num) => dispatch({ type: 'ADD', num }),
-    rename: (name) => dispatch({ type: 'UPDATE_USERNAME', name })
-  }
+  return {}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index)

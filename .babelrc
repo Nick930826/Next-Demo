@@ -1,0 +1,14 @@
+{
+  "presets": ["next/babel"],
+  "plugins": [
+    [
+      // 通过这个babel-plugin-import插件，在babel这层已经把 import { Button } from 'antd' 转化为 import Button from 'antd/lib/button'，
+      // webpack解析的时候，就只会去antd里面去拿button相关的代码
+      "import",
+      {
+        "libraryName": "antd",
+        "style": true // `style: true` 会加载 less 文件
+      }
+    ]
+  ]
+}
