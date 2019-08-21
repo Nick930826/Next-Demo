@@ -19,10 +19,10 @@ class About extends React.Component {
   }
 
   render() {
-    const { test, about, count } = this.props
+    const { test, about } = this.props
     return (
       <div onClick={this.handleAddParams}>
-        About{test}{about}{count}
+        About{test}{about}
       </div>
     )
   }
@@ -30,7 +30,7 @@ class About extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    count: state.counter.count
+    
   }
 }
 

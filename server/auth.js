@@ -35,7 +35,12 @@ module.exports = (server) => {
           }
         })
         ctx.session.userInfo = userInfoRep.data
-        ctx.redirect('/')
+        if (ctx.session.referer) {
+          ctx.redirect(ctx.session.referer)
+        } else {
+          ctx.redirect('/')
+        }
+        ctx.session.referer = null
       } else {
         const errorMsg = result.data && result.data.error
         ctx.body = `request token failed ${errorMsg}`
@@ -51,6 +56,17 @@ module.exports = (server) => {
     if (path === '/logout' && method === 'POST') {
       ctx.session = null
       ctx.body = `logout success`
+    } else {
+      await next()
+    }
+  })
+
+  server.use(async (ctx, next) => {
+    const path = ctx.path
+    const { url } = ctx.query
+    if (path === '/pre-login') {
+      ctx.session.referer = url
+      ctx.body = `ready to login`
     } else {
       await next()
     }

@@ -14,9 +14,9 @@ class Index extends React.Component {
   }
 
   componentDidMount () {
-    // axios.get('/api/user/info').then(resp => {
-    //   console.log(resp)
-    // })
+    axios.get('/github/search/repositories?q=react').then(resp => {
+      console.log(resp)
+    })
   }
 
   render() {

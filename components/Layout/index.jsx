@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import Link from 'next/link'
+import { withRouter } from 'next/router'
 import { connect } from 'react-redux'
 import { Layout, Icon, Input, Avatar, Tooltip, Menu, Dropdown } from 'antd'
+import axios from 'axios'
 import Container from '../Container'
 import config from '../../config'
 import { logout } from '../../store';
@@ -9,10 +11,16 @@ import './style.less'
 const { Header, Footer, Content } = Layout;
 
 
-function MyLayout ({ children, user, logout }) {
+function MyLayout ({ children, user, logout, router }) {
   function handleLogout() {
     console.log('logout')
     logout()
+  }
+  function handleLogin(e) {
+    e.preventDefault()
+    axios.get(`/pre-login?url=${router.asPath}`).then(res => {
+      window.location.href = config.github.authorize
+    })
   }
   const menu = (
     <Menu>
@@ -43,10 +51,10 @@ function MyLayout ({ children, user, logout }) {
               {
                 user && user.login
                   ? <Dropdown overlay={menu}>
-                    <a href="/"><Avatar src={user.avatar_url} size={40} /></a>
+                    <Avatar style={{ cursor: 'pointer' }} src={user.avatar_url} size={40} />
                   </Dropdown>
                   : <Tooltip title='点击登录'>
-                      <a href={config.github.authorize}>
+                      <a onClick={(e) => handleLogin(e)}>
                         <Avatar size={40} icon="user" />
                       </a>
                   </Tooltip>
@@ -76,4 +84,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyLayout)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MyLayout))
