@@ -36,7 +36,8 @@ module.exports = withCss(withLessExcludeAntd({
     )
     Object.assign(config.resolve.alias, {
       components: path.resolve(__dirname, './components'),
-      pages: path.resolve(__dirname, './pages')
+      pages: path.resolve(__dirname, './pages'),
+      lib: path.resolve(__dirname, './lib')
     })
     return config
   }

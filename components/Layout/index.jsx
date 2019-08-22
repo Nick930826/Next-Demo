@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Link from 'next/link'
+import Router from 'next/router'
 import { withRouter } from 'next/router'
 import { connect } from 'react-redux'
 import { Layout, Icon, Input, Avatar, Tooltip, Menu, Dropdown } from 'antd'
@@ -20,6 +21,16 @@ function MyLayout ({ children, user, logout, router }) {
     e.preventDefault()
     axios.get(`/pre-login?url=${router.asPath}`).then(res => {
       window.location.href = config.github.authorize
+    })
+  }
+
+  function handleSearch(value) {
+    console.log('e', value)
+    Router.push({
+      pathname: '/search',
+      query: {
+        'search': value
+      }
     })
   }
   const menu = (
@@ -43,7 +54,7 @@ function MyLayout ({ children, user, logout, router }) {
               style={{ width: '140px' }}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              onSearch={(e) => console.log(e)}
+              onSearch={(e) => handleSearch(e)}
             />
           </div>
           <div className="header-right">
@@ -84,4 +95,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MyLayout))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyLayout))

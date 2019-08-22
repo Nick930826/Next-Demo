@@ -1,43 +1,20 @@
-const axios = require('axios')
-const githubApiPath = 'https://api.github.com'
-module.exports = (server) => {
+const { requestGithub } = require('../lib/api')
+
+module.exports = server => {
   server.use(async (ctx, next) => {
     const path = ctx.path
+    const method = ctx.method
     if (path.startsWith('/github')) {
+      console.log('ctx.request.body', ctx.request.body)
       const githubAuth = ctx.session.githubAuth
-      const githubPath = ctx.url.replace('/github/', '/')
-      console.log('`${githubApiPath}${githubPath}`', `${githubApiPath}${githubPath}`)
       const token = githubAuth && githubAuth.access_token
       let headers = {}
       if (token) {
         headers['Authorization'] = `${githubAuth.token_type} ${token}`
       }
-      try {
-        const result = await axios({
-          method: 'GET',
-          url: `${githubApiPath}${githubPath}`,
-          headers
-        })
-        console.log('result', result)
-        if (result.status == 200) {
-          ctx.body = result.data
-          ctx.set('Content-Type', 'application/json')
-        } else {
-          ctx.body = {
-            msg: '接口错误',
-            errcode: 1
-          }
-          ctx.set('Content-Type', 'application/json')
-        }
-      } catch (error) {
-        console.log('error', error)
-        ctx.body = {
-          msg: '接口错误',
-          errcode: 1
-        }
-        ctx.set('Content-Type', 'application/json')
-      }
-     
+      const result = await requestGithub(method, ctx.url.replace('/github/', '/'), ctx.request.body || {}, headers)
+      ctx.status = result.status
+      ctx.body = result.data
     } else {
       await next()
     }
