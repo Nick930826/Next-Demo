@@ -29,7 +29,7 @@ function MyLayout ({ children, user, logout, router }) {
     Router.push({
       pathname: '/search',
       query: {
-        'search': value
+        'q': value
       }
     })
   }

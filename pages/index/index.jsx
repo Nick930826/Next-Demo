@@ -12,7 +12,7 @@ import './style.less'
 
 // 每次获取数据都会刷新缓存时间，如果maxAge时间到了之前都没有获取数据，那么缓存失效，重新获取数据
 const cache = new LRU({
-  maxAge: 1000 * 10
+  maxAge: 1000 * 60 * 10
 })
 
 
