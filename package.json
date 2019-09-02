@@ -40,5 +40,8 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
     "webpack-filter-warnings-plugin": "^1.2.1"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.1"
   }
 }
