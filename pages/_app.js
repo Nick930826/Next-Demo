@@ -6,6 +6,7 @@ import WithRedux from '../with-redux'
 import { Provider } from 'react-redux'
 
 import { Layout } from 'components'
+import 'antd/dist/antd.css'
 import './global.less'
 
 
