@@ -53,7 +53,7 @@ app.prepare().then(() => {
     // 设置“ctx.respond = false” 是因为handle内部已经对ctx.body做了处理，无需koa内部实现响应的内容
     ctx.respond = false
   })
-  server.listen(3000, () => {
-    console.log(`run at 3000`)
+  server.listen(3001, () => {
+    console.log(`run at 3001`)
   })
 })
